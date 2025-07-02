@@ -219,13 +219,14 @@ if (cluster.isPrimary && shouldUseCluster) {
     availabilityRoutes
   ]);
 
-  app.get('/health', (req, res) => {
+   app.get('/api/health', (req, res) => {
     res.json({
       status: 'ok',
       connections: mongoose.connections.length,
       worker: cluster.isWorker ? cluster.worker?.id : 'primary'
     });
   });
+
 
   // Manejo de errores
   app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
